@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+      - name: order_date
+        tests: [not_null]
+
+  - name: dim_customer
+    description: "Customer master data"
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]
+      - name: full_name
+        description: "Concatenation of first and last names"
+
+  - name: fact_orders
+    description: "Order-level fact table"
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+      - name: amount
+        tests: [not_null]
